@@ -7,7 +7,7 @@ function agregarContacto(nuevoContacto) {
   contactos.push(nuevoContacto);
 }
 
-function borarContacto(contactoId) {
+function borrarContacto(contactoId) {
   let nuevosContactos = contactos.filter(
     (contacto) => contacto.id !== contactoId
   );
@@ -19,13 +19,22 @@ function buscarContacto(contactoId) {
   return contacto[0];
 }
 
+function actualizarContacto(id, nuevoContacto) {
+  const index = contactos.findIndex((contactos) => contactos.id === id);
+
+  if (index !== -1) {
+    contactos[index] = { ...contactos[index], ...nuevoContacto };
+  }
+}
+
 function imprimirContactos() {
   return contactos;
 }
 
 module.exports = {
   agregarContacto,
-  borarContacto,
+  borrarContacto,
   buscarContacto,
   imprimirContactos,
+  actualizarContacto,
 };
